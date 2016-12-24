@@ -29,7 +29,7 @@ func applyBlurEffect(image: UIImage) -> UIImage {
 	blurfilter!.setValue(imageToBlur, forKey: "inputImage")
 	blurfilter!.setValue(50.0, forKey: "inputRadius")
 	let resultImage = blurfilter!.value(forKey: "outputImage") as! CIImage
-	let cgImage = context.createCGImage(resultImage, from: resultImage.extent)
+	let cgImage = context.createCGImage(resultImage, from: (imageToBlur?.extent)!)
 	let blurredImage = UIImage(cgImage: cgImage!)
 	return blurredImage
 	
@@ -46,13 +46,9 @@ class TestViewController: UIViewController {
 		view.addSubview(imgView)
 		imgView.frame = CGRect(x: 0, y: 0, width: 375, height: 375 * 809/1337)
 		
-		let filter = CIFilter(name: "CIGaussianBlur", withInputParameters: nil)
-		filter?.setValue(CIImage(image: sara), forKey: kCIInputImageKey)
-		filter?.setValue(40.0, forKey: kCIInputRadiusKey)
-		
 		let newImage = UIImageView(frame: CGRect(x: 0, y: 250, width: 375 , height: 375 * 809/1337))
-		newImage.image = applyBlurEffect(image: sara)
 		
+		newImage.image = applyBlurEffect(image: sara)
 		view.addSubview(newImage)
 	}
 }
