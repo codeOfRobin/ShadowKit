@@ -27,13 +27,13 @@ func applyBlurEffect(image: UIImage) -> UIImage {
 	let imageToBlur = CIImage(image: image)
 	let blurfilter = CIFilter(name: "CIGaussianBlur")
 	blurfilter!.setValue(imageToBlur, forKey: "inputImage")
-	blurfilter!.setValue(100.0, forKey: "inputRadius")
+	blurfilter!.setValue(50.0, forKey: "inputRadius")
 	let resultImage = blurfilter!.value(forKey: "outputImage") as! CIImage
 	
 	let origExtent = imageToBlur?.extent
 	print(resultImage.extent)
 //	let newExtent = CGRect(origin: .zero, size: resultImage.extent.size).insetBy(dx: 300, dy: 300)
-	let newExtent = resultImage.extent.insetBy(dx: 525, dy: 525)
+	let newExtent = resultImage.extent.insetBy(dx: 290, dy: 290)
 	let cgImage = context.createCGImage(resultImage, from: newExtent)
 	let blurredImage = UIImage(cgImage: cgImage!)
 	return blurredImage
