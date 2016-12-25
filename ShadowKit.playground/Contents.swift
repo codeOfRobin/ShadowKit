@@ -27,13 +27,14 @@ func applyBlurEffect(image: UIImage) -> UIImage {
 	let imageToBlur = CIImage(image: image)
 	let blurfilter = CIFilter(name: "CIGaussianBlur")
 	blurfilter!.setValue(imageToBlur, forKey: "inputImage")
-	blurfilter!.setValue(50.0, forKey: "inputRadius")
+	blurfilter!.setValue(75.0, forKey: "inputRadius")
 	let resultImage = blurfilter!.value(forKey: "outputImage") as! CIImage
 	
-	let origExtent = imageToBlur?.extent
-	print(resultImage.extent)
+	let origExtent = imageToBlur!.extent
+	print(origExtent)
 //	let newExtent = CGRect(origin: .zero, size: resultImage.extent.size).insetBy(dx: 300, dy: 300)
-	let newExtent = resultImage.extent.insetBy(dx: 290, dy: 290)
+    let newExtent = origExtent.insetBy(dx: -157, dy: -157)
+    print(newExtent)
 	let cgImage = context.createCGImage(resultImage, from: newExtent)
 	let blurredImage = UIImage(cgImage: cgImage!)
 	return blurredImage
@@ -50,8 +51,10 @@ class TestViewController: UIViewController {
 		view.backgroundColor = UIColor.white
 		view.addSubview(imgView)
 		imgView.frame = CGRect(x: 40, y: 80, width: 295, height: 295)
+        imgView.layer.cornerRadius = 8
+        imgView.clipsToBounds = true
 		
-		let newImage = UIImageView(frame: CGRect(x: 10, y: 50, width: 355 , height: 355))
+		let newImage = UIImageView(frame: CGRect(x: 10, y: 60, width: 355, height: 355))
 		
 		newImage.image = applyBlurEffect(image: sara)
 		view.insertSubview(newImage, belowSubview: imgView)
