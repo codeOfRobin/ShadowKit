@@ -14,16 +14,16 @@ func applyBlurEffect(image: UIImage) -> UIImage {
 	let imageToBlur = CIImage(image: image)
 	let blurfilter = CIFilter(name: "CIGaussianBlur")
 	blurfilter!.setValue(imageToBlur, forKey: "inputImage")
-	let blurRadius = 40.0
-	let inset = CGFloat(blurRadius * 4.0 + 10.0)
+	let blurRadius = 90.0
+	let inset = CGFloat(blurRadius * 4.0 + 0.0)
 	blurfilter!.setValue(blurRadius, forKey: "inputRadius")
 	let resultImage = blurfilter!.value(forKey: "outputImage") as! CIImage
 	
 	let origExtent = imageToBlur!.extent
 	var newExtent = resultImage.extent
-	newExtent.origin.x += (newExtent.size.width - origExtent.size.width - inset)/2
-	newExtent.origin.y += (newExtent.size.height - origExtent.size.height - inset)/2
-	newExtent.size = CGSize(width: origExtent.size.width + inset, height: origExtent.size.height + inset)
+	newExtent.origin.x += (newExtent.size.width - origExtent.size.width - inset * 0.75)/2
+	newExtent.origin.y += (newExtent.size.height - origExtent.size.height - inset * 0.75)/2
+	newExtent.size = CGSize(width: origExtent.size.width + inset * 0.75, height: origExtent.size.height + inset * 0.75)
 	
 	let cgImage = context.createCGImage(resultImage, from: newExtent)
 	let blurredImage = UIImage(cgImage: cgImage!)
@@ -31,7 +31,7 @@ func applyBlurEffect(image: UIImage) -> UIImage {
 }
 
 class TestViewController: UIViewController {
-	let imgView = UIImageView(image: sara)
+	let imgView = UIImageView(image: zankyoReference)
 	
 	
 	override func viewDidLoad() {
@@ -43,14 +43,21 @@ class TestViewController: UIViewController {
         imgView.layer.cornerRadius = 8
         imgView.clipsToBounds = true
 		
-		let newImage = UIImageView(frame: CGRect(x: 10, y: 60, width: 355, height: 355))
+		let newImage = UIImageView(frame: CGRect(x: 0, y: 40, width: 375, height: 375))
 		
-		newImage.image = applyBlurEffect(image: sara)
+		newImage.image = applyBlurEffect(image: zankyoReference)
 		view.insertSubview(newImage, belowSubview: imgView)
 		newImage.contentMode = .scaleAspectFit
 		newImage.clipsToBounds = false
 		
-		imgView.alpha = 0
+		
+		let bgBlur = UIVisualEffectView(effect: UIBlurEffect(style: .extraLight))
+		bgBlur.frame = CGRect(x: 0, y: 375, width: 375, height: 375)
+		bgBlur.backgroundColor = .clear
+		let bgImage = UIImageView(image: zankyoReference)
+		bgImage.frame = bgBlur.frame
+		view.addSubview(bgImage)
+		view.addSubview(bgBlur)
 	}
 }
 
