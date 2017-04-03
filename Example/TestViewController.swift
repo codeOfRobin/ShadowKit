@@ -10,6 +10,7 @@
 
 import UIKit
 import CoreImage
+import ShadowKit
 
 let sara = #imageLiteral(resourceName: "sara")
 
@@ -29,25 +30,6 @@ func shadowMaker(input: ShadowInput) -> UIImage {
 }
 
 
-func applyBlurEffect(image: UIImage) -> UIImage {
-	let context = CIContext(options: nil)
-	let imageToBlur = CIImage(image: image)
-	let blurfilter = CIFilter(name: "CIGaussianBlur")
-	blurfilter!.setValue(imageToBlur, forKey: "inputImage")
-	blurfilter!.setValue(75.0, forKey: "inputRadius")
-	let resultImage = blurfilter!.value(forKey: "outputImage") as! CIImage
-	
-	let origExtent = imageToBlur!.extent
-	print(origExtent)
-	//	let newExtent = CGRect(origin: .zero, size: resultImage.extent.size).insetBy(dx: 300, dy: 300)
-	let newExtent = origExtent.insetBy(dx: -157, dy: -157)
-	print(newExtent)
-	let cgImage = context.createCGImage(resultImage, from: newExtent)
-	let blurredImage = UIImage(cgImage: cgImage!)
-	return blurredImage
-	
-}
-
 class TestViewController: UIViewController {
 	let imgView = UIImageView(image: sara)
 	
@@ -63,7 +45,7 @@ class TestViewController: UIViewController {
 		
 		let newImage = UIImageView(frame: CGRect(x: 10, y: 60, width: 355, height: 355))
 		
-		newImage.image = applyBlurEffect(image: sara)
+		newImage.image = ShadowKitTemp.sharedTemp.applyBlurEffect(image: sara)
 		view.insertSubview(newImage, belowSubview: imgView)
 		newImage.layer.cornerRadius = 10	
 		//		imgView.alpha = 0

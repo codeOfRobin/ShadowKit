@@ -9,9 +9,11 @@
 import UIKit
 
 public struct ShadowKitTemp{
-    static let sharedTemp = ShadowKitTemp()
     
-    func applyBlurEffect(image: UIImage) -> UIImage {
+    //Hah! Remember Java?
+    public static let sharedTemp = ShadowKitTemp()
+    
+    public func applyBlurEffect(image: UIImage) -> UIImage {
         let context = CIContext(options: nil)
         let imageToBlur = CIImage(image: image)
         let blurfilter = CIFilter(name: "CIGaussianBlur")
@@ -21,8 +23,7 @@ public struct ShadowKitTemp{
         blurfilter!.setValue(blurRadius, forKey: "inputRadius")
         let resultImage = blurfilter!.value(forKey: "outputImage") as! CIImage
         
-        //What we hope to achieve at the end point it to return an image with a blur. This image should be slightly larger across bounds of the imageview, which will them super-impose the image on top of the blur, giving it the apple music album art effect
-        
+        //What we hope to achieve at the end point it to return an image with a blur. This image should be slightly larger across bounds of the imageview, which will them super-impose the image on top of the blur, giving it the Apple Music album art effect.
         //Figure out the extents of both the original and the blurred images:
         let origExtent = imageToBlur!.extent
         var newExtent = resultImage.extent
