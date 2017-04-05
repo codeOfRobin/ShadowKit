@@ -45,10 +45,24 @@ class TestViewController: UIViewController {
 		
 		let newImage = UIImageView(frame: CGRect(x: 10, y: 60, width: 355, height: 355))
 		
-		newImage.image = ShadowKitTemp.sharedTemp.applyBlurEffect(image: sara)
-		view.insertSubview(newImage, belowSubview: imgView)
-		newImage.layer.cornerRadius = 10	
-		//		imgView.alpha = 0
+        ShadowKitTemp.sharedTemp.applyBlurEffect(image: sara, completionHander: {(blurredImage) in
+            UIView.animate(withDuration: 0.47, animations: {
+                self.imgView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+                newImage.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+            }, completion: {(completed) in
+                //FIXME: Chaining animations this way is terrible. Use keyframe animations instead.
+                newImage.image = blurredImage
+                self.view.insertSubview(newImage, belowSubview: self.imgView)
+                newImage.alpha = 0.4
+                UIView.animate(withDuration: 0.3, delay: 0, options: [], animations: {
+                    newImage.layer.cornerRadius = 20
+                    newImage.alpha = 1.0
+                    newImage.transform = .identity
+                    self.imgView.transform = .identity
+                    
+                }, completion: nil)
+            })
+        })
 	}
 }
 
