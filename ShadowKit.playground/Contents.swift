@@ -33,7 +33,6 @@ func applyBlurEffect(image: UIImage) -> UIImage {
 class TestViewController: UIViewController {
 	let imgView = UIImageView(image: zankyoReference)
 	
-	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
