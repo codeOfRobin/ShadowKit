@@ -41,8 +41,8 @@ func applyBlurEffect(to image: UIImage, completionHander: @escaping (UIImage) ->
         let imageToBlur = CIImage(image: image)
         let blurfilter = CIFilter(name: "CIGaussianBlur")
         blurfilter!.setValue(imageToBlur, forKey: "inputImage")
-        let blurRadius = 90.0
-        let inset = CGFloat(blurRadius * 4.0 + 0.0)
+        let blurRadius = 80.0
+        let inset = CGFloat(blurRadius * 4.0)
         blurfilter!.setValue(blurRadius, forKey: "inputRadius")
         let resultImage = blurfilter!.value(forKey: "outputImage") as! CIImage
         
@@ -53,10 +53,11 @@ func applyBlurEffect(to image: UIImage, completionHander: @escaping (UIImage) ->
         
         //Normalise the bounds and center of the new extent to fit our requirement of 'slightly larger bounds than the original image'
         //First, we re-orient the center:
-        newExtent.origin.x += (newExtent.size.width - origExtent.size.width - inset * 0.75)/2
-        newExtent.origin.y += (newExtent.size.height - origExtent.size.height - inset * 0.75)/2
+		let reorientationFraction = CGFloat(1.0)
+        newExtent.origin.x += (newExtent.size.width - origExtent.size.width - inset * reorientationFraction)/2
+        newExtent.origin.y += (newExtent.size.height - origExtent.size.height - inset * reorientationFraction)/2
         //...and then re-size to fit:
-        newExtent.size = CGSize(width: origExtent.size.width + inset * 0.75, height: origExtent.size.height + inset * 0.75)
+        newExtent.size = CGSize(width: origExtent.size.width + inset * reorientationFraction, height: origExtent.size.height + inset * reorientationFraction)
         
         let cgImage = context.createCGImage(resultImage, from: newExtent)
         let blurredImage = UIImage(cgImage: cgImage!)
