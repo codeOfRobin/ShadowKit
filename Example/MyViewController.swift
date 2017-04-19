@@ -30,7 +30,7 @@ func shadowMaker(input: ShadowInput) -> UIImage {
 }
 
 
-class TestViewController: UIViewController {
+class MyViewController: UIViewController {
 	let imgView = UIImageView(image: sara)
 	
 	

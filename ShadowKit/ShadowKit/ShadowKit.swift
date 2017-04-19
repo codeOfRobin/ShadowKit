@@ -21,6 +21,16 @@ extension UIImage{
     }
 }
 
+extension UIImageView{
+    public func applyingShadowBlueToImage(_ completionHandler: @escaping (UIImage?) -> Void) {
+        guard let image = self.image else { completionHandler(nil); return }
+        
+        applyBlurEffect(to: image) { (shadowBlurredImage) in
+            completionHandler(shadowBlurredImage)
+        }
+    }
+}
+
 //TODO: Have an extension on UIImageView that automatically populates the blurred image behind the current image and returns. (Maybe ask for an animation?)
 
 //TODO: Have an extension on a UIView that takes a 'screenshot' of the current view and returns a blurred image of that view (asynchronously)
@@ -51,7 +61,8 @@ func applyBlurEffect(to image: UIImage, completionHander: @escaping (UIImage) ->
         let cgImage = context.createCGImage(resultImage, from: newExtent)
         let blurredImage = UIImage(cgImage: cgImage!)
         
-        DispatchQueue.main.async {
+        //FIXME: Don't assume the queue to be main, here. Instead, conserve whatever queue that the implementor made the call from
+        DispatchQueue.main.sync {
             completionHander(blurredImage)
         }
     }
