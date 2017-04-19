@@ -12,7 +12,7 @@ import UIKit
 import CoreImage
 import ShadowKit
 
-let sara = #imageLiteral(resourceName: "sara")
+let saraImage = #imageLiteral(resourceName: "sara")
 
 enum ShadowInput {
 	case view(view: UIView)
@@ -31,8 +31,7 @@ func shadowMaker(input: ShadowInput) -> UIImage {
 
 
 class MyViewController: UIViewController {
-	let imgView = UIImageView(image: sara)
-	
+	let imgView = UIImageView(image: saraImage)
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -43,21 +42,21 @@ class MyViewController: UIViewController {
 		imgView.layer.cornerRadius = 8
 		imgView.clipsToBounds = true
 		
-		let newImage = UIImageView(frame: CGRect(x: 10, y: 60, width: 355, height: 355))
+		let newImageView = UIImageView(frame: CGRect(x: 10, y: 60, width: 355, height: 355))
 		
-        ShadowKitTemp.sharedTemp.applyBlurEffect(image: sara, completionHander: {(blurredImage) in
+        saraImage.applyingShadowBlur({ (blurredImage) in
             UIView.animate(withDuration: 0.47, animations: {
                 self.imgView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-                newImage.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+                newImageView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
             }, completion: {(completed) in
                 //FIXME: Chaining animations this way is terrible. Use keyframe animations instead.
-                newImage.image = blurredImage
-                self.view.insertSubview(newImage, belowSubview: self.imgView)
-                newImage.alpha = 0.4
+                newImageView.image = blurredImage
+                self.view.insertSubview(newImageView, belowSubview: self.imgView)
+                newImageView.alpha = 0.4
                 UIView.animate(withDuration: 0.3, delay: 0, options: [], animations: {
-                    newImage.layer.cornerRadius = 20
-                    newImage.alpha = 1.0
-                    newImage.transform = .identity
+                    newImageView.layer.cornerRadius = 20
+                    newImageView.alpha = 1.0
+                    newImageView.transform = .identity
                     self.imgView.transform = .identity
                     
                 }, completion: nil)
