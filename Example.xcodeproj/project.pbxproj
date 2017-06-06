@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		4236F40F1E10329100D343C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4236F40E1E10329100D343C7 /* AppDelegate.swift */; };
-		4236F4111E10329100D343C7 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4236F4101E10329100D343C7 /* TestViewController.swift */; };
+		4236F4111E10329100D343C7 /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4236F4101E10329100D343C7 /* MyViewController.swift */; };
 		4236F4141E10329100D343C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4236F4121E10329100D343C7 /* Main.storyboard */; };
 		4236F4161E10329100D343C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4236F4151E10329100D343C7 /* Assets.xcassets */; };
 		4236F4191E10329100D343C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4236F4171E10329100D343C7 /* LaunchScreen.storyboard */; };
 		4236F4241E10329200D343C7 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4236F4231E10329200D343C7 /* ExampleTests.swift */; };
 		4236F42F1E10329200D343C7 /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4236F42E1E10329200D343C7 /* ExampleUITests.swift */; };
+		77A7CE0E1E92A1BA004930B4 /* ShadowKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A7CE071E92A17E004930B4 /* ShadowKit.framework */; };
+		77A7CE0F1E92A1BA004930B4 /* ShadowKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77A7CE071E92A17E004930B4 /* ShadowKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,12 +33,47 @@
 			remoteGlobalIDString = 4236F40A1E10329100D343C7;
 			remoteInfo = Example;
 		};
+		77A7CE061E92A17E004930B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77A7CE011E92A17E004930B4 /* ShadowKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 77A7CDE71E92A134004930B4;
+			remoteInfo = ShadowKit;
+		};
+		77A7CE081E92A17E004930B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77A7CE011E92A17E004930B4 /* ShadowKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 77A7CDF01E92A134004930B4;
+			remoteInfo = ShadowKitTests;
+		};
+		77A7CE101E92A1BA004930B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77A7CE011E92A17E004930B4 /* ShadowKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 77A7CDE61E92A134004930B4;
+			remoteInfo = ShadowKit;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		77A7CE121E92A1BA004930B4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				77A7CE0F1E92A1BA004930B4 /* ShadowKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4236F40B1E10329100D343C7 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4236F40E1E10329100D343C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4236F4101E10329100D343C7 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		4236F4101E10329100D343C7 /* MyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
 		4236F4131E10329100D343C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4236F4151E10329100D343C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4236F4181E10329100D343C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +84,7 @@
 		4236F42A1E10329200D343C7 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4236F42E1E10329200D343C7 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		4236F4301E10329200D343C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		77A7CE011E92A17E004930B4 /* ShadowKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShadowKit.xcodeproj; path = ShadowKit/ShadowKit.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77A7CE0E1E92A1BA004930B4 /* ShadowKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +116,7 @@
 		4236F4021E10329100D343C7 = {
 			isa = PBXGroup;
 			children = (
+				77A7CE011E92A17E004930B4 /* ShadowKit.xcodeproj */,
 				4236F40D1E10329100D343C7 /* Example */,
 				4236F4221E10329200D343C7 /* ExampleTests */,
 				4236F42D1E10329200D343C7 /* ExampleUITests */,
@@ -98,7 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				4236F40E1E10329100D343C7 /* AppDelegate.swift */,
-				4236F4101E10329100D343C7 /* TestViewController.swift */,
+				4236F4101E10329100D343C7 /* MyViewController.swift */,
 				4236F4121E10329100D343C7 /* Main.storyboard */,
 				4236F4151E10329100D343C7 /* Assets.xcassets */,
 				4236F4171E10329100D343C7 /* LaunchScreen.storyboard */,
@@ -125,6 +165,15 @@
 			path = ExampleUITests;
 			sourceTree = "<group>";
 		};
+		77A7CE021E92A17E004930B4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				77A7CE071E92A17E004930B4 /* ShadowKit.framework */,
+				77A7CE091E92A17E004930B4 /* ShadowKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,10 +184,12 @@
 				4236F4071E10329100D343C7 /* Sources */,
 				4236F4081E10329100D343C7 /* Frameworks */,
 				4236F4091E10329100D343C7 /* Resources */,
+				77A7CE121E92A1BA004930B4 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				77A7CE111E92A1BA004930B4 /* PBXTargetDependency */,
 			);
 			name = Example;
 			productName = Example;
@@ -218,6 +269,12 @@
 			mainGroup = 4236F4021E10329100D343C7;
 			productRefGroup = 4236F40C1E10329100D343C7 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 77A7CE021E92A17E004930B4 /* Products */;
+					ProjectRef = 77A7CE011E92A17E004930B4 /* ShadowKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				4236F40A1E10329100D343C7 /* Example */,
@@ -226,6 +283,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		77A7CE071E92A17E004930B4 /* ShadowKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ShadowKit.framework;
+			remoteRef = 77A7CE061E92A17E004930B4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		77A7CE091E92A17E004930B4 /* ShadowKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ShadowKitTests.xctest;
+			remoteRef = 77A7CE081E92A17E004930B4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		4236F4091E10329100D343C7 /* Resources */ = {
@@ -259,7 +333,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4236F4111E10329100D343C7 /* TestViewController.swift in Sources */,
+				4236F4111E10329100D343C7 /* MyViewController.swift in Sources */,
 				4236F40F1E10329100D343C7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,6 +366,11 @@
 			isa = PBXTargetDependency;
 			target = 4236F40A1E10329100D343C7 /* Example */;
 			targetProxy = 4236F42B1E10329200D343C7 /* PBXContainerItemProxy */;
+		};
+		77A7CE111E92A1BA004930B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ShadowKit;
+			targetProxy = 77A7CE101E92A1BA004930B4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -413,6 +492,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Example/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kayako.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -425,6 +505,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Example/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kayako.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
