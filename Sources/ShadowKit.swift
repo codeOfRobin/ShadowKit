@@ -39,8 +39,8 @@ extension UIImageView {
 	}
 }
 
-func applyBlurEffect(to image: UIImage, radius: CGFloat = 80.0, completionHander: @escaping (UIImage) -> Void) {
-	DispatchQueue.global(qos: .utility).async {
+func applyBlurEffect(to image: UIImage, radius: CGFloat = 80.0, queue: DispatchQueue = DispatchQueue.global(qos: .utility), completionHander: @escaping (UIImage) -> Void) {
+	queue.sync {
 		let context = CIContext(options: nil)
 		guard let imageToBlur = CIImage(image: image),
 			let blurfilter = CIFilter(name: "CIGaussianBlur") else {
