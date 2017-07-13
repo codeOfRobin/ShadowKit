@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  Example
 //
-//  Created by Robin Malhotra on 25/12/16.
-//  Copyright © 2016 Robin Malhotra. All rights reserved.
+//  Created by Robin Malhotra on 13/07/17.
+//  Copyright © 2017 ShadowKit. All rights reserved.
 //
 
 import UIKit
