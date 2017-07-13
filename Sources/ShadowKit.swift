@@ -9,43 +9,46 @@
 import UIKit
 
 extension UIImage{
-	/**
-	Call this method on a UIImage to its shadow its blurred image called in a completion handler.
-	The completion handler will be called asynchronously on the main thread.
-
-	- Parameter completionHandler: A callback recieved with the blurred image as a parameter
-	*/
-	public func applyShadowBlur(onCompletionExecute closure: @escaping (UIImage) -> Void) {
-		applyBlurEffect(to: self) { (shadowBlurredImage) in
-			closure(shadowBlurredImage)
-		}
-	}
+    
+    public func applyShadowBlur(with radius: CGFloat = 80.0, queue: DispatchQueue = .global(qos: .utility), onCompletionExecute closure: @escaping (UIImage) -> Void) {
+        applyBlurEffect(to: self, radius: radius, queue: queue) { (shadowBlurredImage) in
+            closure(shadowBlurredImage)
+        }
+    }
+    
 }
 
-extension UIImageView {
-	/**
-	Call this method on a UIImageView to blur its image
-	The completion handler will be called asynchronously on the main thread.
-	
-	- Parameter completionHandler: A callback recieved with the blurred image as a parameter
-	*/
-	public func blurBackground(onCompletionExecute closure: @escaping () -> Void) {
-		guard let image = self.image else {
-			fatalError("🚨 No image in the UIImageView")
-		}
-		applyBlurEffect(to: image) { (_) in
-			closure()
-		}
-	}
+public extension UIImageView {
+
+//	public func blurBackground(onCompletionExecute closure: @escaping () -> Void) {
+//		guard let image = self.image else {
+//			fatalError("🚨 No image in the UIImageView")
+//		}
+//		applyBlurEffect(to: image) { (_) in
+//			closure()
+//		}
+//	}
+    
+    public func generateBackgroundBlur(){
+        guard let image = self.image else {
+            fatalError("🚨 No image in the UIImageView")
+        }
+        applyBlurEffect(to: image) { (_) in
+//            closure()
+        }
+    }
+    
 }
 
-func applyBlurEffect(to image: UIImage, radius: CGFloat = 80.0, queue: DispatchQueue = DispatchQueue.global(qos: .utility), completionHander: @escaping (UIImage) -> Void) {
-	queue.sync {
+public func applyBlurEffect(to image: UIImage, radius: CGFloat = 80.0, queue: DispatchQueue = DispatchQueue.global(qos: .utility), completionHander: @escaping (UIImage) -> Void) {
+    queue.async {
+        
 		let context = CIContext(options: nil)
 		guard let imageToBlur = CIImage(image: image),
 			let blurfilter = CIFilter(name: "CIGaussianBlur") else {
 				fatalError("🚨 blur unsuccesful")
 		}
+        
 		blurfilter.setValue(imageToBlur, forKey: "inputImage")
 		let inset = CGFloat(radius * 4.0)
 		blurfilter.setValue(radius, forKey: "inputRadius")
